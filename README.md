@@ -2,11 +2,11 @@
 
 ## Description
 
-This is bot program for twitter runs on Heroku.
+This is bot program for Twitter.
 Tweets random words periodically.
 
 ## Usage
 
-- Write sentences for tweets in wors.py.
-- Set working span in clock.py.
-- It would work on Heroku.
+- Write sentences to tweets into wors.py.
+- Set working span at clock.py.
+- It's all stuffs needed to work on Heroku.
