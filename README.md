@@ -7,6 +7,6 @@ Tweets random words periodically.
 
 ## Usage
 
-- Write sentences to tweets into wors.py.
+- Write sentences to tweet into wors.py.
 - Set working span at clock.py.
-- It's all stuffs needed to work on Heroku.
+- These are all stuffs needed to make it work on Heroku.
