@@ -1,11 +1,20 @@
-#coding: UTF-8
+#coding; utf-8
 
-import twitter
-from apscheduler.schedulers.blocking import BlockingScheduler
+from requests_oauthlib import OAuth1Session
+import json
 import os
 import random
+import datetime
 
-text = [
+
+
+def puttweet():
+    twitter = OAuth1Session(consumer_key=os.environ["CONSUMER_KEY"],
+                    consumer_secret=os.environ["CONSUMER_SECRET"],
+                    access_token_key=os.environ["ACCESS_TOKEN_KEY"],
+                    access_token_secret=os.environ["ACCESS_TOKEN_SECRET"])
+
+    tweets = [
     "私が投資を始めたのは11歳の時、それまでは人生を無駄にしていたというわけだ/ウォーレン・バフェット\n#投資名言",
     "分散投資は無知を保護する手段だ。集中投資ができるのは投資を理解している人だけだ。\n#投資名言", 
     "投資の世界に見送り三振はない。すべての球をスイングする必要はなく、良い球を待つことができる。/ウォーレン・バフェット\n#投資名言",
@@ -68,26 +77,6 @@ text = [
     "1991年の日本バブル崩壊\n原因は日銀の金融緩和政策により、低金利でお金を借り、株や土地の価格が高騰した。その後金融引き締めにより急激な景気後退をもたらした\n#投資知識", 
     "ご祝儀相場とは、新年のスタートや新たな政権の誕生など、大きなイベントをお祝いして買い注文が入り、相場全体が上昇することを指します。\n#投資知識"
     ]
-
-def tweet():
-    # 取得したキーとアクセストークンを設定する
-    # App permissionsがread only になっていないことを確認してから取得したトークンでないとだめ
-    api = twitter.Api(consumer_key=os.environ["CONSUMER_KEY"],
-                    consumer_secret=os.environ["CONSUMER_SECRET"],
-                    access_token_key=os.environ["ACCESS_TOKEN_KEY"],
-                    access_token_secret=os.environ["ACCESS_TOKEN_SECRET"])
-    api.PostUpdate(random.choice(text))
-    #print("Tweetしました")
-    
-
-
-if __name__ == '__main__':
-    scheduler = BlockingScheduler()  # スケジューラを作る
-    scheduler.add_job(tweet, 'interval', minutes=1)  # ジョブを追加
-    """     print(
-        "Press Ctrl+C to exit.".format('Break' if os.name == 'nt' else 'C')) """
-
-    try:
-        scheduler.start()  # スタート
-    except (KeyboardInterrupt, SystemExit):
-        pass
+    randomtweet = tweets[random.randrange(len(tweets))]
+    params = {"status": randomtweet} 
+    req = twitter.post("https://api.twitter.com/1.1/statuses/update.json", params = params)
