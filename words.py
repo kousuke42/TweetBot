@@ -72,10 +72,10 @@ text = [
 def tweet():
     # 取得したキーとアクセストークンを設定する
     # App permissionsがread only になっていないことを確認してから取得したトークンでないとだめ
-    api = twitter.Api(consumer_key="CONSUMER_KEY",
-                    consumer_secret="CONSUMER_SECRET",
-                    access_token_key="ACCESS_TOKEN_KEY",
-                    access_token_secret="ACCESS_TOKEN_SECRET")
+    api = twitter.Api(consumer_key=os.environ["CONSUMER_KEY"],
+                    consumer_secret=os.environ["CONSUMER_SECRET"],
+                    access_token_key=os.environ["ACCESS_TOKEN_KEY"],
+                    access_token_secret=os.environ["ACCESS_TOKEN_SECRET"])
     api.PostUpdate(random.choice(text))
     #print("Tweetしました")
     
