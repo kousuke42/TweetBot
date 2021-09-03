@@ -9,10 +9,10 @@ import datetime
 
 
 def puttweet():
-    twitter = OAuth1Session(consumer_key=os.environ["CONSUMER_KEY"],
-                    consumer_secret=os.environ["CONSUMER_SECRET"],
-                    access_token_key=os.environ["ACCESS_TOKEN_KEY"],
-                    access_token_secret=os.environ["ACCESS_TOKEN_SECRET"])
+    twitter = OAuth1Session(os.environ["CONSUMER_KEY"],
+                    os.environ["CONSUMER_SECRET"],
+                    os.environ["ACCESS_TOKEN_KEY"],
+                    os.environ["ACCESS_TOKEN_SECRET"])
 
     tweets = [
     "私が投資を始めたのは11歳の時、それまでは人生を無駄にしていたというわけだ/ウォーレン・バフェット\n#投資名言",
