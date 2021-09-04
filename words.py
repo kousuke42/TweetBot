@@ -1,20 +1,15 @@
 #coding; utf-8
 
-from requests_oauthlib import OAuth1Session
-import json
-import os
+import twitter
 import random
-import datetime
+import os
 
+api = twitter.Api(consumer_key=os.environ["CONSUMER_KEY"],
+                  consumer_secret=os.environ["CONSUMER_SECRET"],
+                  access_token_key=os.environ["ACCESS_TOKEN_KEY"],
+                  access_token_secret=os.environ["ACCESS_TOKEN_SECRET"])
 
-
-def puttweet():
-        twitter = OAuth1Session(os.environ["CONSUMER_KEY"],
-                        os.environ["CONSUMER_SECRET"],
-                        os.environ["ACCESS_TOKEN_KEY"],
-                        os.environ["ACCESS_TOKEN_SECRET"])
-
-        tweets = [
+text = [
         "私が投資を始めたのは11歳の時、それまでは人生を無駄にしていたというわけだ/ウォーレン・バフェット\n#投資名言",
         "分散投資は無知を保護する手段だ。集中投資ができるのは投資を理解している人だけだ。\n#投資名言", 
         "投資の世界に見送り三振はない。すべての球をスイングする必要はなく、良い球を待つことができる。/ウォーレン・バフェット\n#投資名言",
@@ -77,6 +72,5 @@ def puttweet():
         "1991年の日本バブル崩壊\n原因は日銀の金融緩和政策により、低金利でお金を借り、株や土地の価格が高騰した。その後金融引き締めにより急激な景気後退をもたらした\n#投資知識", 
         "ご祝儀相場とは、新年のスタートや新たな政権の誕生など、大きなイベントをお祝いして買い注文が入り、相場全体が上昇することを指します。\n#投資知識"
         ]
-        randomtweet = tweets[random.randrange(len(tweets))]
-        params = {"status": randomtweet} 
-        req = twitter.post("https://api.twitter.com/1.1/statuses/update.json", params = params)
+
+api.PostUpdate(random.choice(text))
