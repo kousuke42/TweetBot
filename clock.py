@@ -6,6 +6,7 @@ twische = BlockingScheduler()
 @twische.scheduled_job('interval',minutes=1)
 def timed_job():
     words.puttweet()
+    print("twiteしました。")
 
 if __name__ == "__main__":
     twische.start()
