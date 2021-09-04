@@ -3,10 +3,10 @@ import words
 
 twische = BlockingScheduler()
 
-@twische.scheduled_job('interval',minutes=1)
+@twische.scheduled_job('interval',minutes=30)
 def timed_job():
     words.puttweet()
-    print("twiteしました。")
+    print("tweetしました。")
 
 if __name__ == "__main__":
     twische.start()
